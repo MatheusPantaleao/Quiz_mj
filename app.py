@@ -131,15 +131,15 @@ if "tempo_gasto" not in st.session_state: st.session_state.tempo_gasto = 0
 
 # ECRÃS DA APLICAÇÃO
 def tela_login():
-    st.title("Rei da Pop - Super Quiz")
+    st.title("Rei do Pop - Quiz")
     st.markdown("Bem-vindo ao derradeiro desafio sobre **Michael Jackson**!")
     st.divider()
     
     aba_login, aba_cadastro = st.tabs(["🔑 Entrar", "📝 Criar Conta"])
     
     with aba_login:
-        st.subheader("Aceda à sua conta")
-        nome_login = st.text_input("Utilizador:", key="login_nome").strip()
+        st.subheader("Login")
+        nome_login = st.text_input("usuario:", key="login_nome").strip()
         senha_login = st.text_input("Senha:", type="password", key="login_senha")
         
         if st.button("Entrar", use_container_width=True, type="primary"):
@@ -160,7 +160,7 @@ def tela_login():
 
     with aba_cadastro:
         st.subheader("Crie uma nova conta")
-        nome_cad = st.text_input("Escolha um Utilizador:", key="cad_nome").strip()
+        nome_cad = st.text_input("Escolha um usuario:", key="cad_nome").strip()
         senha_cad = st.text_input("Crie uma Senha:", type="password", key="cad_senha")
         senha_conf = st.text_input("Confirme a Senha:", type="password", key="cad_conf")
         
@@ -356,7 +356,7 @@ def tela_resultado():
             else:
                 registrar_erro_pergunta(p_dict['pergunta'])
                 
-        pesos = {"Fácil": 1, "Médio": 3, "Difícil": 5}
+        pesos = {"Fácil": 1, "Médio": 2, "Difícil": 3}
         peso = pesos.get(st.session_state.niv, 1)
         pontos_ganhos = acertos * peso
         
@@ -391,14 +391,14 @@ def tela_resultado():
     if acertos == total_perguntas:
         st.success(f"**Perfeito!** {acertos}/{total_perguntas}. Ganhou {pontos} pontos.")
         with col_gif:
-            st.image("assets/Mj_speed.gif", use_container_width=True) 
+            st.image("assets/Mj_kiss.gif", use_container_width=True) 
         tocar_som_oculto("me-chama-de-lord.mp3") 
         
     elif acertos >= (total_perguntas // 2):
         st.info(f"**Muito bom!** {acertos}/{total_perguntas}. Ganhou {pontos} pontos.")
         with col_gif:
-            st.image("assets/Mj_kiss.gif", use_container_width=True) 
-        tocar_som_oculto("go-drinking.mp3")
+            st.image("assets/Mj_speed.gif", use_container_width=True) 
+        tocar_som_oculto("Mj_.mp3")
         
     else:
         st.warning(f"**Foi quase...** {acertos}/{total_perguntas}. Tente novamente!")

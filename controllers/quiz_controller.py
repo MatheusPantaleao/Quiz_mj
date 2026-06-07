@@ -25,7 +25,7 @@ def registrar_jogador(nome, senha):
     try:
         jogador_existente = session.query(Jogador).filter_by(nome=nome).first()
         if jogador_existente:
-            return False, "Este nome de utilizador já existe!"
+            return False, "Este nome de usuario já existe!"
         novo_jogador = Jogador(nome=nome, senha=gerar_hash(senha))
         session.add(novo_jogador)
         session.commit()
@@ -38,7 +38,7 @@ def verificar_login(nome, senha):
     try:
         jogador = session.query(Jogador).filter_by(nome=nome).first()
         if not jogador:
-            return False, "Utilizador não encontrado!"
+            return False, "usuario não encontrado!"
         if jogador.senha != gerar_hash(senha):
             return False, "Senha incorreta!"
         return True, "Login bem-sucedido!"

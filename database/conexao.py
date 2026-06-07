@@ -1,7 +1,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-engine = create_engine('sqlite:///banco.db', echo=False)
+engine = create_engine(
+    'sqlite:///banco.db', 
+    echo=False, 
+    connect_args={'timeout': 15}
+)
 
 Base = declarative_base()
 
